@@ -9,8 +9,17 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
+//Import config file
+const config = require('./config');
+
 app.use(cors());
 app.use(express.json());
+
+//cross-origin resource sharing
+var corsOptions = {
+    origin: `http://${config.cors.host}:${config.cors.port}`
+};
+app.use(cors(corsOptions));
 
 const session = require("express-session");
 
@@ -18,6 +27,7 @@ const session = require("express-session");
 const passport = require ('passport');
 
 const router = require('./network/routes');
+
 //Errors
 const errors = require('./network/errors');
 app.use(errors);
@@ -49,6 +59,6 @@ router(app);
 
 // Define el puerto en el que escuchará el servidor
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor en ejecución en el puerto ${PORT}`);
+app.listen(config.api.port, () => {
+    console.log(`Servidor en ejecución en el dirección y puerto ${config.api.host}:${config.api.port}`);
 });
