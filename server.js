@@ -42,7 +42,6 @@ models.sequelize.sync({ force: true }).then(async () => {
     console.log(err, console.log("Something went wrong with the Database Update!"))
 });
 
-
 //load passport strategies
 require('./auth/passport')(passport, models.user);
 
