@@ -1,7 +1,6 @@
 const models = require('../../models')
 
 module.exports = function () {
-
     // Función para mezclar un arreglo al azar
     async function shuffleArray(array) {
         return new Promise((resolve, reject) => {
